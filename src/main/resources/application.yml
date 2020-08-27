@@ -1,0 +1,16 @@
+server:
+  port: 8888
+
+spring:
+  profiles:
+    active: jdbc
+  datasource:
+    hikari:
+      connection-test-query: SELECT 1
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    config:
+      server:
+        jdbc:
+          sql: SELECT prop_key, value from properties WHERE application=? AND profile=? AND label=?
+          order: 1
